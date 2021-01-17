@@ -1,0 +1,13 @@
+<form>
+        <h3 mat-dialog-title>{{title}}</h3>
+        <div mat-dialog-content>
+            <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="list name">
+            </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+            <button type="button" mat-raised-button color="primary" (click)="onClick()">save</button>
+            <button type="button" mat-button mat-dialog-close>close</button>
+        </div>
+    
+    </form>

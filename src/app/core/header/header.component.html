@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="openSidebar()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Project Managment</span>
+    <span class="fill-remaining-space"></span>
+    <mat-slide-toggle (change)="onChange($event.checked)">dark theme</mat-slide-toggle>
+</mat-toolbar>

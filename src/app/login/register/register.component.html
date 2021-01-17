@@ -1,0 +1,36 @@
+<form>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Resigter :
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                  <input matInput type="text" placeholder="your email">  
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <input matInput type="text" placeholder="your name">  
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <input matInput type="password" placeholder="your password">  
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <input matInput type="password" placeholder="re-type your password">  
+                </mat-form-field>
+                <mat-grid-list cols="6">
+                    <mat-grid-tile *ngFor="let item of items">
+                        <mat-icon class="avatar" [svgIcon]="item"></mat-icon>
+                    </mat-grid-tile>
+          
+                </mat-grid-list>
+                <button mat-raised-button color="primary"type="button">Resigter</button>
+            </mat-card-content>
+            <mat-card-actions class="text-right">
+                <p>have no account?<a href="">sign in</a></p>
+                <p>forget password?<a href="">reset  </a></p>
+            </mat-card-actions>
+        </mat-card>
+        
+ 
+        </form>
