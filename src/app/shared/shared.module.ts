@@ -22,6 +22,7 @@ import {
   MatSidenavModule
 }from '@angular/material';
 import { DirectiveModule } from '../directive/directive.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -49,6 +50,8 @@ import { DirectiveModule } from '../directive/directive.module';
     MatSelectModule,
     MatSidenavModule,
     DirectiveModule,
+    FormsModule,
+    ReactiveFormsModule,
     
   ],
   exports: [
@@ -72,6 +75,8 @@ import { DirectiveModule } from '../directive/directive.module';
     MatSelectModule,
     MatSidenavModule,
     DirectiveModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [ConfirmDialogComponent],
 })
