@@ -28,7 +28,7 @@ export class DropDirective {
     ev.stopPropagation();
     if(this.el.nativeElement === ev.target){
       this.drag$.subscribe(dragData =>{
-        if(this.dropTags.indexOf(dragData.tag) > -1){
+        if(dragData&&this.dropTags.indexOf(dragData.tag) > -1){
           this.rd.addClass(this.el.nativeElement, this.dragEnterClass);
         }
       }
@@ -44,7 +44,7 @@ export class DropDirective {
     ev.stopPropagation();
     if(this.el.nativeElement === ev.target){
       this.drag$.subscribe(dragData =>{
-        if(this.dropTags.indexOf(dragData.tag) > -1){
+        if(dragData&&this.dropTags.indexOf(dragData.tag) > -1){
           this.rd.setProperty(ev,'dataTransfer.effectAllowed','all');
           this.rd.setProperty(ev,'dataTransfer.dropEffect','move' );
         }else{
@@ -60,7 +60,7 @@ export class DropDirective {
   onDragLeave(ev: Event){
     if(this.el.nativeElement === ev.target){
       this.drag$.subscribe(dragData =>{
-        if(this.dropTags.indexOf(dragData.tag) > -1){
+        if(dragData&&this.dropTags.indexOf(dragData.tag) > -1){
           this.rd.removeClass(this.el.nativeElement, this.dragEnterClass);
         }
       }
@@ -74,7 +74,7 @@ export class DropDirective {
     ev.stopPropagation();
     if(this.el.nativeElement === ev.target){
       this.drag$.subscribe(dragData =>{
-        if(this.dropTags.indexOf(dragData.tag) > -1){
+        if(dragData&&this.dropTags.indexOf(dragData.tag) > -1){
           this.rd.removeClass(this.el.nativeElement, this.dragEnterClass);
           this.dropped.emit(dragData);
           this.service.clearDragData();
