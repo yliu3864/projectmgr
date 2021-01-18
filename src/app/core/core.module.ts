@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {loadSvgResources} from "../utils/svg.util";
 import { AppRoutingModule } from '../app-routing.module';
+import 'rxjs/add/operator/take'
 
 
 
