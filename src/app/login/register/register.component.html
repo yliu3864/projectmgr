@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>
@@ -7,24 +7,25 @@
             </mat-card-header>
             <mat-card-content>
                 <mat-form-field class="full-width">
-                  <input matInput type="text" placeholder="your email">  
+                  <input matInput type="text" placeholder="your email" formControlName="email">  
                 </mat-form-field>
                 <mat-form-field class="full-width">
-                  <input matInput type="text" placeholder="your name">  
+                  <input matInput type="text" placeholder="your name" formControlName="name">  
                 </mat-form-field>
                 <mat-form-field class="full-width">
-                  <input matInput type="password" placeholder="your password">  
+                  <input matInput type="password" placeholder="your password" formControlName="password">  
                 </mat-form-field>
                 <mat-form-field class="full-width">
-                  <input matInput type="password" placeholder="re-type your password">  
+                  <input matInput type="password" placeholder="re-type your password" formControlName="repeat">  
                 </mat-form-field>
-                <mat-grid-list cols="6">
-                    <mat-grid-tile *ngFor="let item of items">
-                        <mat-icon class="avatar" [svgIcon]="item"></mat-icon>
-                    </mat-grid-tile>
-          
-                </mat-grid-list>
-                <button mat-raised-button color="primary"type="button">Resigter</button>
+                <app-image-list-select
+                [useSvgIcon]="true"
+                [cols]="6"
+                [title]="'select avatar: '"
+                [items]="items"
+                formControlName="avatar">
+                </app-image-list-select>
+                <button mat-raised-button color="primary"type="submit">Resigter</button>
             </mat-card-content>
             <mat-card-actions class="text-right">
                 <p>have no account?<a href="">sign in</a></p>
