@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {loadSvgResources} from "../utils/svg.util";
 import { AppRoutingModule } from '../app-routing.module';
 import 'rxjs/add/operator/take'
+import { ServicesModule } from '../services/services.module';
 
 
 
@@ -22,13 +23,19 @@ import 'rxjs/add/operator/take'
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
-    
+    ServicesModule.forRoot(),
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
     AppRoutingModule,
+  ],
+  providers:[
+    {   
+      provide: 'BASE_CONFIG', useValue: {
+      url: 'http://localhost:3000',
+    }}
   ]
 })
 export class CoreModule { 
