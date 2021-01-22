@@ -11,7 +11,7 @@ import {loadSvgResources} from "../utils/svg.util";
 import { AppRoutingModule } from '../app-routing.module';
 import 'rxjs/add/operator/take'
 import { ServicesModule } from '../services/services.module';
-
+import 'rxjs'
 
 
 
