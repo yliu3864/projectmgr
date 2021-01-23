@@ -7,7 +7,7 @@ import {mergeMap, count, switchMap,map} from 'rxjs/operators'
 
 @Injectable()
 export class ProjectService {
-    private readonly domain = 'project';
+    private readonly domain = 'projects';
     private hearders = new HttpHeaders({
         'Content-Type': 'application/json'
     })
