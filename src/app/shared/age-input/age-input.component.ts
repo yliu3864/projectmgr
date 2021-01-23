@@ -16,7 +16,7 @@ import {
   isDate,
 } from 'date-fns'
 
-import { isValidDate } from 'src/app/utils/date.util';
+import { isValidDate, convertToDate } from 'src/app/utils/date.util';
 
 
 
@@ -211,21 +211,21 @@ export class AgeInputComponent implements ControlValueAccessor, OnInit, OnDestro
     }
 
     toDate(age: Age) : string{
-      const now = Date.now();
+      const now = new Date();
      
       switch (age.unit) {
         case AgeUnit.Year:{
-          return format(subYears(now, age.age),this.format);
+          return convertToDate(subYears(now, age.age));
         }
         case AgeUnit.Month:{
-          return format(subMonths(now, age.age),this.format);
+          return convertToDate(subMonths(now, age.age));
         }
         case AgeUnit.Day:{
-          return format(subDays(now, age.age),this.format);
+          return convertToDate(subDays(now, age.age));
         }
       
         default:{
-          return null;
+          return '1991-01-01';
         }
        
       }
