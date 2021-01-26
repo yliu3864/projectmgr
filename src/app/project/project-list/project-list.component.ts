@@ -5,6 +5,12 @@ import { InviteComponent } from '../invite/invite.component';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import{slideToRight} from '../../anims/router.anim'
 import{listAnimation} from '../../anims/list.anim'
+import { ServicesModule } from 'src/app/services/services.module';
+import * as _ from 'lodash';
+import { range, Observable } from 'rxjs';
+import { reduce,map } from 'rxjs/operators';
+import { Project } from 'src/app/domain';
+
 
 @Component({
   selector: 'app-project-list',
@@ -34,20 +40,32 @@ export class ProjectListComponent implements OnInit {
       "coverImg" : "assets/img/covers/1.jpg",
     },
   ];
-  constructor(private dialog:MatDialog, private cd: ChangeDetectorRef) { }
+  constructor(private dialog:MatDialog, private cd: ChangeDetectorRef, private service: ServicesModule ) { }
 
   ngOnInit() {
+    // this.service$.get("1").subscribe(this.projects => {
+    //   this.projects = this.projects;
+    //   this.cd.markForCheck();
+    // }
+
+    // )
   }
 
   openNewProjectDialog(){
-    const dialogRef = this.dialog.open(NewProjectComponent,{data:{title: 'new project: '}});
-    dialogRef.afterClosed().subscribe(result => {
-       console.log(result);
-       this.projects = [...this.projects, 
-        {id:3, name: 'a new project',desc: ' this is a new project',  "coverImg" : "assets/img/covers/8.jpg"},
-        {id:4, name: 'another new project',desc: ' this is another new project',  "coverImg" : "assets/img/covers/9.jpg"}
-      ];
+    const img = `/assets/img/covers/${Math.floor(Math.random() * 40)}_tn.jpg`;
+   
+    const dialogRef = this.dialog.open(
+      NewProjectComponent,
+      {data:{thumbnails: this.getThumbnailsObs(), img: img}
+    });
+    dialogRef.afterClosed()
+      .take(1)
+      .map(val => ({...val, coverImg: this.buildImgSrc(val.coverImg)}))
+      .subscribe(project => {
+       
+      this.projects = [...this.projects, project];
       this.cd.markForCheck();
+      
     });
 
   }
@@ -56,8 +74,20 @@ export class ProjectListComponent implements OnInit {
     const dialogRef = this.dialog.open(InviteComponent);
   }
 
-  launchUpdateDialog(){
-    const dialogRef = this.dialog.open(NewProjectComponent,{data:{title: 'edit project: ' }});
+  launchUpdateDialog(project: Project){
+    const dialogRef = this.dialog.open(
+      NewProjectComponent,
+      {data:{thumbnails: this.getThumbnailsObs(), project: project}
+    });
+    dialogRef.afterClosed()
+      .take(1)
+      .map(val => ({...val, id:project.id,coverImg: this.buildImgSrc(val.coverImg)}))
+      .subscribe(project => {
+      const index = this.projects.map(p => p.id).indexOf(project.id);
+      this.projects = [...this.projects.slice(0, index), project, ...this.projects.slice(index +1)]  
+      this.cd.markForCheck();
+      
+    });
   }
 
   launchConfirmDialog(project){
@@ -67,6 +97,22 @@ export class ProjectListComponent implements OnInit {
       this.projects = this.projects.filter(p => p.id !== project.id);
       this.cd.markForCheck();
     });
+  }
+
+  private getThumbnailsObs(){
+    return _.range(0,40)
+      .map(i => `/assets/img/covers/${i}_tn.jpg`);
+
+    // return range(0, 40).pipe(
+    //   map(i => `/assets/img/covers/${i}_tn.jpg`),
+    //   reduce((r: string[], x:string) =>{
+    //     return [...r,x];
+    //   },[])
+    // );
+  }
+
+  private buildImgSrc(img: string): string{
+    return img.indexOf('_') > -1 ? img.split('_',1)[0] + '.jpg' : img;
   }
 }
 

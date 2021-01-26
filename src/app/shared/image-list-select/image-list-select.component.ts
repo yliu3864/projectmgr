@@ -21,9 +21,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl} fro
 export class ImageListSelectComponent implements ControlValueAccessor {
 
   @Input() title = 'select';
-  @Input() cols = 6;
+  @Input() cols = 8;
   @Input() rowHeight = '64px';
-  @Input() items : string [] = [];
+  @Input() items : string[] = [];
   @Input()useSvgIcon= false;
   @Input() itemWidth= '80px';
 

@@ -45,7 +45,7 @@ export class TaskListService {
     get(projectId: string):Observable<TaskList[]>{
       
         const uri = `${this.config.uri}/${this.domain}`;
-        const params = new HttpParams().set('members_like', projectId);
+        const params = new HttpParams().set('projectId', projectId);
         return this.http.get<TaskList[]>(uri,{
             params: params,
             headers: this.headers
