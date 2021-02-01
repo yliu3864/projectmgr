@@ -1,12 +1,10 @@
-<form>
+<form #f='ngForm' (ngSubmit)="onSubmit($event,f)">
         <h2 mat-dialog-title>Invite members: </h2>
         <div mat-dialog-content>
-            <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="member name" [matAutocomplete]="autoMembers">  
-            </mat-form-field>            
+            <app-chips-list [label]="'Invite members'" name="members" [(ngModel)]="members"></app-chips-list>         
         </div>
         <div mat-dialog-actions>
-            <button type="button" mat-raised-button color="primary" (click)="onClick()">save</button>
+            <button type="button" mat-raised-button color="primary" [disabled]= "!f.valid">save</button>
             <button type="button" mat-button mat-dialog-close>close</button>
         </div>
     

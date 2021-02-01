@@ -34,7 +34,7 @@ import 'rxjs'
   providers:[
     {   
       provide: 'BASE_CONFIG', useValue: {
-      url: 'http://localhost:3000',
+      uri: 'http://localhost:3000'
     }}
   ]
 })

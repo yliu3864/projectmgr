@@ -37,10 +37,10 @@
         ]
       },
       {
-        "password": "Ls123456",
-        "name": "李四",
+        "password": "A123456",
+        "name": "Alice",
         "avatar": "avatars:svg-2",
-        "email": "lisi@163.com",
+        "email": "alice@163.com",
         "id": "BkkDvwee-",
         "projectIds": [
           "Sk2HaTagb",
@@ -48,6 +48,17 @@
         ],
         "roleIds": [
           1
+        ]
+      },
+      {
+        "password": "E123456",
+        "name": "Eric",
+        "avatar": "avatars:svg-2",
+        "email": "eric@163.com",
+        "id": "3",
+        "projectIds": [
+          "1"
+         
         ]
       }
     ],

@@ -20,6 +20,7 @@ export class ServicesModule {
                 UserService,
                 AuthService,
                 AuthGuardService,
+                
             ]
         }
     }

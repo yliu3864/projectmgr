@@ -7,19 +7,18 @@ import {mergeMap, count, switchMap,map, filter, reduce} from 'rxjs/operators'
 
 @Injectable()
 export class UserService {
-    private readonly domain = 'users';
-    private hearders = new HttpHeaders({
-        'Content-Type': 'application/json'
-    })
-    constructor(private http: HttpClient,@Inject('BASE_CONFIG') private config){}
+    private readonly domain='users';
+    private hearders = new HttpHeaders().set('Content-Type','application/json')
+    
+    constructor(private http: HttpClient,
+        @Inject('BASE_CONFIG')
+        private config :{uri: string}){}
 
-    searchUsers(filter: string) : Observable<User[]>{
+    searchUsers(filterStr: string) : Observable<User[]>{
         const uri = `${this.config.uri}/${this.domain}`;
-        const params = new HttpParams().set('email_like', filter);
-        return this.http.get<User[]>(uri,{
-            params: params,
-            headers: this.hearders
-        });
+        const params = new HttpParams().set('email_like', filterStr);
+        console.log(this.http.get<User[]>(uri,{params}))
+        return this.http.get<User[]>(uri,{params});
     }
 
     getUsersByProject(projectId: string):Observable<User[]>{
