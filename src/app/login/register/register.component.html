@@ -1,6 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
         <mat-card>
-            <mat-card-header>
+          <mat-tab-group>
+            <mat-tab label="account info">
+              <mat-card-header>
                 <mat-card-title>
                     Resigter :
                 </mat-card-title>
@@ -25,13 +27,25 @@
                 [items]="items"
                 formControlName="avatar">
                 </app-image-list-select>
-                <app-age-input formControlName="dateOfBirth"></app-age-input>
                 <button mat-raised-button color="primary"type="submit">Resigter</button>
             </mat-card-content>
             <mat-card-actions class="text-right">
                 <p>have no account?<a href="">sign in</a></p>
                 <p>forget password?<a href="">reset  </a></p>
             </mat-card-actions>
+            </mat-tab>
+            <mat-tab label="personal info">
+              <div class="full-width">
+                <app-identity-input formControlName="identity"></app-identity-input>
+              </div>
+              <div class="full-width">
+                <app-age-input formControlName="dateOfBirth"></app-age-input>
+              </div>
+              <div class="full-width">
+                <app-area-list formControlName="address"></app-area-list>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
         </mat-card>
         
  

@@ -182,13 +182,7 @@ export class AgeInputComponent implements ControlValueAccessor, OnInit, OnDestro
   }
 
   writeValue(obj: any): void{
-    if(obj){
-      const date = format(obj, this.format);
-      this.form.get('birthday').patchValue(date);
-      const age = this.toAge(date);
-      this.form.get('age').get('ageNum').patchValue(age.age);
-      this.form.get('age').get('ageUnit').patchValue(age.unit);
-    }
+
   }
 
   registerOnChange(fn:any):void{

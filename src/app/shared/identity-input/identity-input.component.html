@@ -1,0 +1,14 @@
+<div>
+    <mat-select placeholder="Identity Type" (change)="onIdTypeChange($event.value)" [(ngModel)]="identity.identityType">
+        <mat-option *ngFor = "let type of identityTypes" [value]="type.value">
+            {{type.label}}
+        </mat-option>
+    </mat-select>
+</div>
+<div class="id-input">
+    <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Identity number" (change)="onIdNoChange($event.target.value)" [(ngModel)]="identity.identityNo">
+        <mat-error>number invalid</mat-error>
+    </mat-form-field>
+</div>
+

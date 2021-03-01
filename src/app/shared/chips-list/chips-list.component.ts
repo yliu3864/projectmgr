@@ -44,8 +44,6 @@ export class ChipsListComponent implements OnInit, ControlValueAccessor {
       .switchMap(str => this.service.searchUsers(str))
 
     const test = this.form.get('memberSearch')
-    console.log(test);  
-    console.log(this.memberResults$)
     this.memberResults$.subscribe(v => console.log(v))
   }
   
